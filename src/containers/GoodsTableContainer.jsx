@@ -12,13 +12,33 @@ import GoodsTable from 'components/goodsTable/GoodsTable';
     Keys will be passed as props to presentational components. Here we are
     implementing our wrapper around increment; the component doesn't care   */
 
+const headerColumns = [
+  {
+    //TODO: User sortKeys from Constants?
+    title: "#",
+    sortKey: "number"
+  },
+  {
+    title: "Product",
+    sortKey: "name"
+  },
+  {
+    title: "Price, $",
+    sortKey: "price"
+  },
+  {
+    title: "Qty",
+    sortKey: "qty"
+  }
+]
+
 const mapDispatchToProps = {
   increment : () => increment(1),
   doubleAsync
 };
 
 const mapStateToProps = (state) => ({
-  counter : state.counter
+  headerColumns: headerColumns
 });
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:

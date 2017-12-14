@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TableHeader from './TableHeader';
 import './GoodsTable.scss';
 
-export const GoodsTable = ({ counter, increment, doubleAsync }) => (
+export const GoodsTable = ({ headerColumns, increment, doubleAsync }) => (
   <table className='table'>
     <thead>
-      <tr>
-        <th scope='col'>#</th>
-        <th scope='col'>Product</th>
-        <th scope='col'>Price, $</th>
-        <th scope='col'>Qty</th>
-      </tr>
+      <TableHeader headerColumns={headerColumns} />
     </thead>
     <tbody>
       <tr>
