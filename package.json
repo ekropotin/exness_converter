@@ -9,7 +9,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production npm run compile",
     "start": "cross-env NODE_ENV=development node build/scripts/start",
     "serve": "cross-env NODE_ENV=production node build/scripts/start",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "npm test -- --watch",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix"
@@ -29,11 +29,13 @@
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^3.1.3",
     "react-redux": "^5.0.4",
     "redbox-react": "^1.3.6",
     "redux": "^3.6.0",
+    "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.3"
   },

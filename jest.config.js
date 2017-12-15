@@ -1,5 +1,5 @@
 module.exports = {
-  transform: { '^.+\\.js$': 'babel-jest' },
+  transform: { '^.+\\.(js|jsx)$': 'babel-jest' },
   modulePaths: ['src'],
   moduleFileExtensions: [ 'js', 'json', 'jsx' ],
   moduleNameMapper: {

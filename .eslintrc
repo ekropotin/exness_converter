@@ -21,7 +21,8 @@
     "test" : false,
     "expect" : false,
     "describe" : false,
-    "it" : false
+    "it" : false,
+    "jest" : false
   },
   "rules": {
     "key-spacing"          : "off",
