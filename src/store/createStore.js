@@ -2,7 +2,44 @@ import { applyMiddleware, compose, createStore as createReduxStore } from 'redux
 import thunk from 'redux-thunk';
 import makeRootReducer from './reducers';
 
-export const createStore = (initialState = {}) => {
+const defaultState = {
+  shoppingCartHeaderColumns: [
+    {
+      // TODO: User sortKeys from Constants?
+      title: 'id',
+      sortKey: 'id'
+    },
+    {
+      title: 'Product',
+      sortKey: 'title'
+    },
+    {
+      title: 'Price, $',
+      sortKey: 'price'
+    },
+    {
+      title: 'Qty',
+      sortKey: 'qty'
+    }
+  ],
+  shoppingCartList: [
+    {
+      id: 1,
+      title: 'Macbook Air 13',
+      price: '1800',
+      qty: 1
+    },
+    {
+      id: 2,
+      title: 'Macbook Pro',
+      price: '1500',
+      qty: 1
+    }
+  ],
+  shoppingCartSorting: { sortKey: 'id', sortAscending: true }
+};
+
+export const createStore = (initialState = defaultState) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
