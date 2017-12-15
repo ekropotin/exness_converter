@@ -14,6 +14,7 @@ const __PROD__ = project.env === 'production';
 const config = {
   entry: {
     main: [
+      'react-hot-loader/patch',
       inProjectSrc(project.main)
     ]
   },

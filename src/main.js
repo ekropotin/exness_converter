@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from './store/createStore';
+import { AppContainer } from 'react-hot-loader';
 
 import './styles/main.scss';
 
@@ -15,9 +16,11 @@ let render = () => {
   const PageLayout = require('./components/pageLayout/PageLayout').default;
 
   ReactDOM.render(
-    <Provider store={store}>
-      <PageLayout />
-    </Provider>,
+    <AppContainer>
+      <Provider store={store}>
+        <PageLayout />
+      </Provider>
+    </AppContainer>,
 
     MOUNT_NODE
   );
