@@ -1,13 +1,24 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import type { ActionCreator } from 'actions';
+import type { HeaderColumn } from 'components/types';
+
 import './SortableTableHeader.scss';
 
-const SortableTableHeader = ({ headerColumns, sortByKey, sortAscending, changeSort }) => {
+type Props = {
+  +headerColumns: Array<HeaderColumn>,
+  +sortByKey: string,
+  +sortAscending?: boolean,
+  +changeSort: ActionCreator
+};
+
+const SortableTableHeader = (props: Props) => {
   function renderArrow (columnSortKey) {
-    if (columnSortKey !== sortByKey) {
+    if (columnSortKey !== props.sortByKey) {
       return null;
     }
-    if (sortAscending) {
+    if (props.sortAscending) {
       return (<i className='fa fa-arrow-down' aria-hidden='true' />);
     } else {
       return (<i className='fa fa-arrow-up' aria-hidden='true' />);
@@ -16,32 +27,23 @@ const SortableTableHeader = ({ headerColumns, sortByKey, sortAscending, changeSo
 
   function onItemClick (sortKey) {
     let asc = true;
-    if (sortKey === sortByKey) {
-      asc = !sortAscending;
+    if (sortKey === props.sortByKey) {
+      asc = !props.sortAscending;
     }
-    changeSort(sortKey, asc);
+    props.changeSort(sortKey, asc);
   }
 
   return (
     <tr>
-      { headerColumns.map((column, index) =>
-        <th className='sorting-table__table-header' scope='col' onClick={() => onItemClick(column.sortKey)} key={column.sortKey}>{ column.title }
+      { props.headerColumns.map((column, index) =>
+        <th className='sorting-table__table-header' scope='col' onClick={() => onItemClick(column.sortKey)}
+          key={column.sortKey}>{ column.title }
           {renderArrow(column.sortKey)}
         </th>
       ) }
       <th />
     </tr>
   );
-};
-
-// TODO: looks like this doesn't work
-SortableTableHeader.propTypes = {
-  headerColumns: PropTypes.arrayOf(PropTypes.shape(
-    {
-      title: PropTypes.string.isRequired,
-      sortKey: PropTypes.string.isRequired
-    }
-  )).isRequired
 };
 
 export default SortableTableHeader;

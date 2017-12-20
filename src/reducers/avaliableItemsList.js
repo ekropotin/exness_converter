@@ -1,5 +1,5 @@
-import avaliableItemsList from 'data/shoppingCartItems.json';
+import avaliableItems from 'data/avaliableItems.json';
 
-export default function (state = avaliableItemsList, action) {
+export default function (state = avaliableItems, action) {
   return state;
 }

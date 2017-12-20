@@ -25,7 +25,11 @@ const ACTION_HANDLERS = {
   },
 
   [Actions.ADD_SHOPPING_ITEMS]: (state, action) => {
-    const items = _.isArray(action.payload) ? action.payload : [action.payload];
+    let items = _.isArray(action.payload) ? action.payload : [action.payload];
+    items = items.map(item => {
+      item.qty = item.qty | 1;
+      return item;
+    });
     const newList = mergeWithSum(state.itemsList, items, 'id', 'qty');
     return { ...state, itemsList: newList };
   }

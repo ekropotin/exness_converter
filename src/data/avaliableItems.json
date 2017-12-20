@@ -2,25 +2,21 @@
     {
         "id": 1,
         "title": "Macbook Air 13",
-        "price": "1800",
-        "qty": 1
+        "price": 1800
       },
       {
         "id": 2,
         "title": "Macbook Pro 15",
-        "price": "1500",
-        "qty": 1
+        "price": 1500
       },
       {
         "id": 3,
         "title": "AirPods",
-        "price": "200",
-        "qty": 1
+        "price": 200
       },
       {
         "id": 4,
         "title": "iPhone X 16Gb",
-        "price": "1000",
-        "qty": 1
+        "price": 1000
       }
 ]
