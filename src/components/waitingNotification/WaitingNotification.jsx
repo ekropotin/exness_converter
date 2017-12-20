@@ -18,8 +18,4 @@ export const WaitingNotification = ({ show }) => {
   }
 };
 
-WaitingNotification.propTypes = {
-
-};
-
 export default connect((state) => ({ show: state.pending }), (state) => ({}))(WaitingNotification);

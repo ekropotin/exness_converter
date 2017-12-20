@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
-import SortableTableHeader from './SortableTableHeader';
 import { Button, Table } from 'react-bootstrap';
 
+import SortableTableHeader from './SortableTableHeader';
 import type { ActionCreator } from 'actions';
 import type { HeaderColumn } from 'components/types';
 

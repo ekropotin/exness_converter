@@ -1,6 +1,6 @@
-import { Actions } from 'actions';
 import _ from 'lodash';
 
+import { Actions } from 'actions';
 import { stableSort, mergeWithSum } from 'utils/arrayTools';
 // ------------------------------------
 // Action Handlers

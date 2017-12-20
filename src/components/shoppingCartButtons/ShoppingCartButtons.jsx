@@ -20,8 +20,4 @@ const Buttons = ({ avaliableItemsList, shoppingCartData, sendShoppingCart, addSh
   );
 };
 
-Buttons.propTypes = {
-
-};
-
 export default Buttons;

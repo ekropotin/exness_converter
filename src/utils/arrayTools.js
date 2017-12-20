@@ -1,5 +1,4 @@
 // @flow
-
 import _ from 'lodash';
 
 export function stableSort (arr: Array<any>, byField: string, asc: boolean): Array<any> {

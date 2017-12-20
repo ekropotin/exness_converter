@@ -59,6 +59,6 @@ describe('Test for arrayTools', () => {
     const res = mergeWithSum(inputArray, addItems, 'id', 'qty');
     expect(res.length === 4);
     const item = res.find(item => (item.id === 3));
-    expect(res.qty === 4);
+    expect(item.qty === 4);
   });
 });
