@@ -1,17 +1,11 @@
 import { combineReducers } from 'redux';
 
-import shoppingCart from './shoppingCart';
-import pending from './pending';
-import notification from './notification';
-import avaliableItemsList from './avaliableItemsList';
+import currencyBoxes from './currencyBoxes';
 
 export const makeRootReducer = () => {
   return combineReducers(
     {
-      shoppingCart,
-      pending,
-      notification,
-      avaliableItemsList
+      currencyBoxes
     }
   );
 };
