@@ -1,9 +1,8 @@
 // @flow
 
-export type CurrencyBoxId = 'first' | 'second';
+export type CurrencyBoxIndex = 0 | 1;
 
 export type CurrencyBox = {
-    id: CurrencyBoxId,
     currencyCode: string,
     amount: number
 };
@@ -16,9 +15,8 @@ export type Currency = {
 export type State = {
   +currencyBoxes: {
     +isCrossRate: boolean,
-    +selectedBox: CurrencyBoxId,
-    +firstBox: CurrencyBox,
-    +secondBox: CurrencyBox
+    +selectedBox: CurrencyBoxIndex,
+    +boxes: Array<CurrencyBox>
   },
   +currencyList: {
     +recentList: Array<String>,

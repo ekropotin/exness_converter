@@ -1,12 +1,6 @@
 // @flow
 import { createSelector } from 'reselect';
 
-import type { State, CurrencyBoxId } from 'store/stateTypes';
+import type { State, CurrencyBoxIndex } from 'store/stateTypes';
 
-export const getCurrencyBoxId = (state: State): CurrencyBoxId => state.currencyBoxes.selectedBox;
-
-// export const getCurrencyBoxes = (state: State) => state.currencyConverter.currencyBoxes;
-
-export const getCurrencyBoxes = function (state: State) {
-  return state.currencyBoxes;
-};
+export const getCurrencyBoxesState = (state: State) => state.currencyBoxes;

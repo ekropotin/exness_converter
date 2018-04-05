@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { updateBoxValue, changeSelectedBox } from 'actions';
-import { getCurrencyBoxes } from 'selectors';
+import { getCurrencyBoxesState } from 'selectors';
 
 import CurrencyBoxes from 'components/currencyBoxes/CurrencyBoxes';
 
@@ -11,7 +11,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => {
-  const substate = getCurrencyBoxes(state);
+  const substate = getCurrencyBoxesState(state);
   return { ...substate };
 };
 
