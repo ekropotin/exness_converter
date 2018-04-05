@@ -1,16 +1,18 @@
 import { connect } from 'react-redux';
 
-import { sendShoppingCart, addShoppingItems } from 'actions';
-import Buttons from 'components/shoppingCartButtons/ShoppingCartButtons';
+import { updateBoxValue, changeSelectedBox } from 'actions';
+import { getCurrencyBoxes } from 'selectors';
+
+import CurrencyBoxes from 'components/currencyBoxes/CurrencyBoxes';
 
 const mapDispatchToProps = {
-  sendShoppingCart,
-  addShoppingItems
+  updateBoxValue,
+  changeSelectedBox
 };
 
-const mapStateToProps = (state) => ({
-  shoppingCartData: state.shoppingCart.itemsList,
-  avaliableItemsList: state.avaliableItemsList
-});
+const mapStateToProps = (state) => {
+  const substate = getCurrencyBoxes(state);
+  return { ...substate };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Buttons);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencyBoxes);

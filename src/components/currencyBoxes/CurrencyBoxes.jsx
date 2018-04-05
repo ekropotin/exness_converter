@@ -1,22 +1,52 @@
+// @flow
+
 import React from 'react';
+import { FormGroup, InputGroup, FormControl, Tooltip } from 'react-bootstrap';
 
-import ShoppingCartTableContainer from 'containers/ShoppingCartTableContainer';
-import Buttons from 'containers/ShoppingCartButtonsContainer';
-import WaitingNotification from 'components/waitingNotification/WaitingNotification';
-import Notification from 'components/notification/Notification';
+import { updateBoxValue, changeSelectedBox } from 'actions';
+import type { CurrencyBoxId, CurrencyBox } from 'store/stateTypes';
 
-import './PageLayout.scss';
+type Props = {
+  updateBoxValue: (number) => any,
+  changeSelectedBox: (CurrencyBoxId) => any,
 
-const PageLayout = () => (
-  <div className='container text-center'>
-    <h1>Exness basket</h1>
-    <div className='page-layout__viewport'>
-      <Notification />
-      <WaitingNotification />
-      <ShoppingCartTableContainer />
-      <Buttons />
-    </div>
-  </div>
-);
+  isCrossRate: boolean,
+  selectedBox: CurrencyBoxId,
+  firstBox: CurrencyBox,
+  secondBox: CurrencyBox
+};
 
-export default PageLayout;
+export default class extends React.Component<Props> {
+  onBoxClick = (e: Event) => {
+    this.props.changeSelectedBox(e.currentTarget.id);
+  };
+
+  onValueChange = (e: Event) => {
+    const value = parseFloat(e.currentTarget.value);
+    this.props.updateBoxValue(value);
+  };
+
+  render () {
+    const firstDisabled = this.props.selectedBox !== this.props.firstBox.id;
+    const secondDisabled = this.props.selectedBox !== this.props.secondBox.id;
+
+    return (
+      <form >
+        <FormGroup id={this.props.firstBox.id} onClick={this.onBoxClick}>
+          <InputGroup>
+            <InputGroup.Addon>{this.props.firstBox.currencyCode}</InputGroup.Addon>
+            <FormControl type='text' value={this.props.firstBox.amount} onChange={this.onValueChange} disabled={firstDisabled} />
+          </InputGroup>
+        </FormGroup>
+
+        <FormGroup id={this.props.secondBox.id} onClick={this.onBoxClick}>
+          <InputGroup>
+            <InputGroup.Addon>{this.props.secondBox.currencyCode}</InputGroup.Addon>
+            <FormControl type='text' value={this.props.secondBox.amount} onChange={this.onValueChange} disabled={secondDisabled} />
+          </InputGroup>
+        </FormGroup>
+
+      </form>
+    );
+  }
+}

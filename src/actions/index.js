@@ -1,8 +1,8 @@
 // @flow
 
-// import { getSelectedBoxId } from 'selectors';
+// import { getCurrencyBoxId } from 'selectors';
 
-import type { State, SelectedBoxId } from 'store/stateTypes';
+import type { State, CurrencyBoxId } from 'store/stateTypes';
 
 export const Actions = {
   CHANGE_BOX: 'CHANGE_BOX',
@@ -12,7 +12,7 @@ export const Actions = {
 };
 
 /* eslint-disable */
-export type ChangeBox       = { +type: 'CHANGE_BOX', +payload: SelectedBoxId };
+export type ChangeBox       = { +type: 'CHANGE_BOX', +payload: CurrencyBoxId };
 export type ChangeCurrency  = { +type: 'CHANGE_CURRENCY', +payload: string };
 export type UpdateBoxValue  = { +type: 'UPDATE_BOX_VALUE', +payload: number };
 export type CalculatePair   = { +type: 'CALCULATE_PAIR' };
@@ -51,4 +51,4 @@ export function updateBoxValue (value: number): ThunkAction {
   };
 }
 
-export const changeSelectedBox = (boxId: SelectedBoxId): ChangeBox => ({ type: Actions.CHANGE_BOX, payload: boxId });
+export const changeSelectedBox = (boxId: CurrencyBoxId): ChangeBox => ({ type: Actions.CHANGE_BOX, payload: boxId });

@@ -1,35 +1,29 @@
 // @flow
 
-export type SelectedBoxId = 'first' | 'second';
+export type CurrencyBoxId = 'first' | 'second';
 
 export type CurrencyBox = {
-    id: SelectedBoxId,
-    currency: string,
+    id: CurrencyBoxId,
+    currencyCode: string,
     amount: number
 };
 
 export type Currency = {
-    +symbol: string,
     +name: string,
-    +symbol_native: string,
-    +decimal_digits: number,
-    +rounding: number,
-    +code: string,
-    +name_plural: string
+    +code: string
 };
 
 export type State = {
-  +currencyConverter: {
-    +currencyBoxes: {
-      +selectedBox: SelectedBoxId,
-      +firstBox: CurrencyBox,
-      +secondBox: CurrencyBox
-    },
-    +currencyList: {
-      +recentList: Array<String>,
-      filteringString: string,
-      filteredList: Array<Currency>,
-      fullList: Array<Currency>
-    }
+  +currencyBoxes: {
+    +isCrossRate: boolean,
+    +selectedBox: CurrencyBoxId,
+    +firstBox: CurrencyBox,
+    +secondBox: CurrencyBox
+  },
+  +currencyList: {
+    +recentList: Array<String>,
+    filteringString: string,
+    filteredList: Array<Currency>,
+    fullList: Array<Currency>
   }
 };

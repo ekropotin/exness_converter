@@ -29,7 +29,6 @@
     "install": "^0.10.2",
     "npm": "^5.6.0",
     "promise": "^8.0.1",
-    "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
