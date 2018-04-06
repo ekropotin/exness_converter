@@ -19,7 +19,6 @@ export type State = {
     +boxes: Array<CurrencyBox>
   },
   +currencyList: {
-    +recentList: Array<String>,
     filteringString: string,
     filteredList: Array<Currency>,
     fullList: Array<Currency>

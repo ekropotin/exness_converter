@@ -3,13 +3,14 @@
 [include]
 
 [libs]
-
+./types.js.flow
 [lints]
 
 [options]
 module.name_mapper='\(react-redux\)' -> '<PROJECT_ROOT>/GeneralStub.js.flow'
 module.name_mapper='\(react-bootstrap\)' -> '<PROJECT_ROOT>/GeneralStub.js.flow'
 module.name_mapper='\(lodash\)' -> '<PROJECT_ROOT>/GeneralStub.js.flow'
+module.name_mapper='\(reselect\)' -> '<PROJECT_ROOT>/GeneralStub.js.flow'
 module.name_mapper='^\(.*\.scss\)$' -> '<PROJECT_ROOT>/GeneralStub.js.flow'
 module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/\1'
 [strict]

@@ -1,2 +1,13 @@
+.c-currency-boxes {
+    padding-top: 30px;
 
+    .c-currency-boxes__crossrate {
+        visibility: hidden;
 
+        &.c-currency-boxes__crossrate--visible {
+            visibility: visible;
+        }
+
+    }
+
+}

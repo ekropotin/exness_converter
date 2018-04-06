@@ -14,6 +14,7 @@
     "browser" : true
   },
   "globals": {
+    "SyntheticEvent" : false,
     "__DEV__"      : false,
     "__TEST__"     : false,
     "__PROD__"     : false,
@@ -22,7 +23,8 @@
     "expect" : false,
     "describe" : false,
     "it" : false,
-    "jest" : false
+    "jest" : false,
+    "beforeEach": false
   },
   "rules": {
     "key-spacing"          : "off",

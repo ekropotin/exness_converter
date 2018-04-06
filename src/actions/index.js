@@ -6,7 +6,8 @@ export const Actions = {
   CHANGE_BOX: 'CHANGE_BOX',
   CHANGE_CURRENCY: 'CHANGE_CURRENCY',
   UPDATE_BOX_VALUE: 'UPDATE_BOX_VALUE',
-  CALCULATE_PAIR: 'CALCULATE_PAIR'
+  CALCULATE_PAIR: 'CALCULATE_PAIR',
+  UPDATE_FILTER: 'UPDATE_FILTER'
 };
 
 /* eslint-disable */
@@ -14,9 +15,10 @@ export type ChangeBox       = { +type: 'CHANGE_BOX', +payload: CurrencyBoxIndex 
 export type ChangeCurrency  = { +type: 'CHANGE_CURRENCY', +payload: string };
 export type UpdateBoxValue  = { +type: 'UPDATE_BOX_VALUE', +payload: number };
 export type CalculatePair   = { +type: 'CALCULATE_PAIR' };
+export type UpdateCurrencyFilter   = { +type: 'UPDATE_FILTER', +payload: string };
 /* eslint-enable */
 
-export type Action = ChangeBox | ChangeCurrency | UpdateBoxValue | CalculatePair;
+export type Action = ChangeBox | ChangeCurrency | UpdateBoxValue | CalculatePair | UpdateCurrencyFilter;
 
 export type ActionCreator = (...args: Array<any>) => Action;
 
@@ -39,6 +41,7 @@ export function changeCurrency (code: string): ThunkAction {
   return (dispatch: Dispatch, getState: GetState) => {
     dispatch(_changeCurrency(code));
     dispatch(_calculatePair());
+    dispatch(updateCurrencyFilter(''));
   };
 }
 
@@ -50,3 +53,6 @@ export function updateBoxValue (value: number): ThunkAction {
 }
 
 export const changeSelectedBox = (boxId: CurrencyBoxIndex): ChangeBox => ({ type: Actions.CHANGE_BOX, payload: boxId });
+
+export const updateCurrencyFilter = (filterString: string): UpdateCurrencyFilter =>
+  ({ type: Actions.UPDATE_FILTER, payload: filterString });

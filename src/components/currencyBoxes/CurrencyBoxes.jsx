@@ -1,9 +1,11 @@
 // @flow
 
 import React from 'react';
-import { FormGroup, InputGroup, FormControl, Tooltip } from 'react-bootstrap';
+import { FormGroup, InputGroup, FormControl, Label } from 'react-bootstrap';
 
-import type { CurrencyBoxIndex, CurrencyBox } from 'store/stateTypes';
+import type { CurrencyBoxIndex, CurrencyBox as CurrencyBoxType } from 'store/stateTypes';
+
+import './CurrencyBoxes.scss';
 
 type Props = {
   updateBoxValue: (number) => any,
@@ -11,39 +13,56 @@ type Props = {
 
   isCrossRate: boolean,
   selectedBox: CurrencyBoxIndex,
-  boxes: Array<CurrencyBox>
+  boxes: Array<CurrencyBoxType>
 };
 
+function CurrencyBox (p) {
+  return (
+    <FormGroup id={p.id} onClick={p.onClick}>
+      <InputGroup>
+        <InputGroup.Addon>{p.currency}</InputGroup.Addon>
+        <FormControl type='text' value={p.amount} onChange={p.onChange} disabled={p.disabled} />
+      </InputGroup>
+    </FormGroup>
+  );
+}
+
 export default class extends React.Component<Props> {
-  onBoxClick = (e: Event) => {
+  onBoxClick = (e: SyntheticEvent<HTMLElement>) => {
     this.props.changeSelectedBox(Number.parseInt(e.currentTarget.id));
   };
 
-  onValueChange = (e: Event) => {
-    const value = e.currentTarget.value ? e.currentTarget.value : 0;
+  onValueChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value || '0';
     this.props.updateBoxValue(Number.parseFloat(value));
   };
 
   render () {
     const { boxes } = this.props;
-    const firstDisabled = this.props.selectedBox !== 0;
-    const secondDisabled = !firstDisabled;
+    let labelClasses = 'c-currency-boxes__crossrate';
+    if (this.props.isCrossRate) {
+      labelClasses += ' c-currency-boxes__crossrate--visible';
+    }
     return (
-      <form >
-        <FormGroup id='0' onClick={this.onBoxClick}>
-          <InputGroup>
-            <InputGroup.Addon>{boxes[0].currencyCode}</InputGroup.Addon>
-            <FormControl type='text' value={boxes[0].amount} onChange={this.onValueChange} disabled={firstDisabled} />
-          </InputGroup>
-        </FormGroup>
+      <form className='c-currency-boxes'>
+        <Label bsStyle='primary' className={labelClasses}>Cross Rate</Label>
+        <CurrencyBox
+          id='0'
+          currency={boxes[0].currencyCode}
+          amount={boxes[0].amount}
+          onChange={this.onValueChange}
+          onClick={this.onBoxClick}
+          disabled={this.props.selectedBox !== 0}
+        />
 
-        <FormGroup id='1' onClick={this.onBoxClick}>
-          <InputGroup>
-            <InputGroup.Addon>{boxes[1].currencyCode}</InputGroup.Addon>
-            <FormControl type='text' value={boxes[1].amount} onChange={this.onValueChange} disabled={secondDisabled} />
-          </InputGroup>
-        </FormGroup>
-
+        <CurrencyBox
+          id='1'
+          currency={boxes[1].currencyCode}
+          amount={boxes[1].amount}
+          onChange={this.onValueChange}
+          onClick={this.onBoxClick}
+          disabled={this.props.selectedBox === 0}
+        />
       </form>
     );
   }

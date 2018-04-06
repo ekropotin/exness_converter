@@ -13,7 +13,7 @@ export const createStore = (initialState = {}) => {
   // ======================================================
   // Store Enhancers
   // ======================================================
-  const enhancers = [/* persistState() */];
+  const enhancers = [persistState('currencyBoxes')];
   let composeEnhancers = compose;
 
   if (__DEV__) {

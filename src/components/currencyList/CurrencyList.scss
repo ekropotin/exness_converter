@@ -1,0 +1,34 @@
+.c-currency-list {
+    .c-currency-list__item {
+        cursor: pointer;
+
+        &.c-currency-list__item--active {
+            background-color: orange;
+        }
+
+    }
+
+}
+
+.c-currency-popular-list {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0;
+
+    .c-currency-popular-list__item {
+        margin-left: 5px;
+        list-style-type: none;
+        display: inline-block;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &.c-currency-popular-list__item--active {
+            background-color: orange;
+        }
+
+    }
+
+}

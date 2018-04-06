@@ -1,7 +1,11 @@
 import { Actions } from 'actions';
-import { getExchangeRate } from 'utils/currencyUtils';
+import Converter from 'utils/currencyConverter';
+
+const quotes = require('data/quotes.json').base;
 
 const deepCloneArray = array => array.map(item => ({ ...item }));
+
+const coverter = new Converter(quotes);
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
@@ -26,10 +30,18 @@ const ACTION_HANDLERS = {
     const quotedCurrencyBoxIndex = state.selectedBox === 0 ? 1 : 0;
     const baseCurrencyBox = state.boxes[state.selectedBox];
     const quotedCurrencyBox = state.boxes[quotedCurrencyBoxIndex];
-    const { rate, isCrossRate } = getExchangeRate(baseCurrencyBox.currencyCode, quotedCurrencyBox.currencyCode);
+    const { rate, isCrossRate } = coverter.getExchangeRate(baseCurrencyBox.currencyCode,
+      quotedCurrencyBox.currencyCode);
     const boxes = deepCloneArray(state.boxes);
-    boxes[quotedCurrencyBoxIndex].amount = (rate * baseCurrencyBox.amount).toFixed(4);
+    boxes[quotedCurrencyBoxIndex].amount = (rate * baseCurrencyBox.amount).toFixed(2);
     return { ...state, boxes, isCrossRate };
+  },
+
+  [Actions.CHANGE_CURRENCY]: (state, action) => {
+    const currency = action.payload;
+    const boxes = deepCloneArray(state.boxes);
+    boxes[state.selectedBox].currencyCode = currency;
+    return { ...state, boxes };
   }
 
 };
